@@ -1,0 +1,19 @@
+{
+  "name": "css-annotation",
+  "version": "0.0.1",
+  "description": "Annotation parser for CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/morishitter/css-annotation/git"
+  },
+  "keywords": ["css","annotation","parser"],
+  "author": "Masaaki Morishita",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+  }
+}
