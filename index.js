@@ -1,11 +1,13 @@
 var fs = require('fs')
 var postcss = require('postcss')
+var inspect = require('obj-inspector')
 
 module.exports.parse = function (css) {
     var root = postcss.parse(css)
     var res = []
+    inspect(root)
 
-    root.each(function (node, i) {
+    root.eachComment(function (node, i) {
         if (node.type === 'comment') {
             var text = node.text
             var tmp = {}
@@ -19,6 +21,24 @@ module.exports.parse = function (css) {
             })
 
             res.push(tmp)
+        }
+        if (node.childs) {
+            var children = node.childs
+            children.eachComment(function (child) {
+                var text = node.text
+                var tmp = {}
+
+                var names = text.match(/\@.+?\s(.+?)(\n|$)/g)
+                names.forEach(function (name, i) {
+                    name.match(/\@(.+?)\s(.+?)(\n|$)/g)
+                    var key = RegExp.$1
+                    var val = RegExp.$2
+                    tmp[key] = val
+                })
+
+                res.push(tmp)
+
+            })
         }
     })
 
