@@ -1,6 +1,5 @@
 var fs = require('fs')
 var postcss = require('postcss')
-var inspect = require('obj-inspector')
 
 module.exports.parse = function (css) {
     var root = postcss.parse(css)
