@@ -5,7 +5,6 @@ var inspect = require('obj-inspector')
 module.exports.parse = function (css) {
     var root = postcss.parse(css)
     var res = []
-    inspect(root)
 
     root.eachComment(function (node, i) {
         if (node.type === 'comment') {
@@ -20,25 +19,11 @@ module.exports.parse = function (css) {
                 tmp[key] = val
             })
 
+            if (node.parent.type === 'rule') {
+                tmp.rule = node.parent.selector
+            }
+
             res.push(tmp)
-        }
-        if (node.childs) {
-            var children = node.childs
-            children.eachComment(function (child) {
-                var text = node.text
-                var tmp = {}
-
-                var names = text.match(/\@.+?\s(.+?)(\n|$)/g)
-                names.forEach(function (name, i) {
-                    name.match(/\@(.+?)\s(.+?)(\n|$)/g)
-                    var key = RegExp.$1
-                    var val = RegExp.$2
-                    tmp[key] = val
-                })
-
-                res.push(tmp)
-
-            })
         }
     })
 

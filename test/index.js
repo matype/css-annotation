@@ -28,7 +28,8 @@ test('test-2', function (t) {
             "foo": "foo"
         },
         {
-            "bar": "bar"
+            "bar": "bar",
+            "rule": ".class"
         }
     ]
     t.same(actual, expected, "comment in rules")
