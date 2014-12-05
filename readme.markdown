@@ -18,11 +18,16 @@ $ npm install css-annotation
  * @bar bar bar bar
  */
 
-.class {
+@media screen (min-width: 600px) {
   /*
-   * @baz baz
+   * @hoge hoge
    */
-   font-size: 12px;
+  .class {
+    /*
+     * @baz baz
+     */
+     font-size: 12px;
+  }
 }
 ```
 
@@ -38,6 +43,11 @@ annotation.parse(css)
   {
     foo: 'foofoo',
     bar: 'bar bar bar'
+  },
+  {
+    atrule: 'media',
+    hoge: 'hoge',
+    params: 'screen (min-width: 600px)'
   },
   {
     baz: 'baz',

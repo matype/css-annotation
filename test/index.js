@@ -35,3 +35,20 @@ test('test-2', function (t) {
     t.same(actual, expected, "comment in rules")
     t.end()
 })
+
+test('test-3', function (t) {
+    var actual = annotation.parse(input("test-3"))
+    var expected = [
+        {
+            "atrule": "media",
+            "foo": "foo",
+            "params": "screen and (min-width: 600px)"
+        },
+        {
+            "bar": "bar",
+            "rule": ".class"
+        }
+    ]
+    t.same(actual, expected, "comment in rules")
+    t.end()
+})

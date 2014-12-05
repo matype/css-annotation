@@ -19,8 +19,15 @@ module.exports.parse = function (css) {
                 tmp[key] = val
             })
 
-            if (node.parent.type === 'rule') {
-                tmp.rule = node.parent.selector
+            var parent = node.parent
+
+            if (parent.type ==='atrule') {
+                tmp.atrule = parent.name
+                tmp.params = parent.params
+            }
+
+            if (parent.type === 'rule') {
+                tmp.rule = parent.selector
             }
 
             res.push(tmp)
