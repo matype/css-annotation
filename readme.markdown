@@ -18,7 +18,12 @@ $ npm install css-annotation
  * @bar bar bar bar
  */
 
-.class {}
+.class {
+  /*
+   * @baz baz
+   */
+   font-size: 12px;
+}
 ```
 
 ```js
@@ -28,7 +33,18 @@ var annotation = require('./')
 var css = fs.readFileSync('input.css', 'utf-8').trim()
 
 annotation.parse(css)
-// [ { foo: 'foofoo', bar: 'bar bar bar'} ]
+/*
+[
+  {
+    foo: 'foofoo',
+    bar: 'bar bar bar'
+  },
+  {
+    baz: 'baz',
+    rule: '.class'
+  }
+]
+*/
 ```
 
 
