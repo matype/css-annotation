@@ -20,11 +20,11 @@ $ npm install css-annotation
 
 @media screen (min-width: 600px) {
   /*
-   * @hoge hoge
+   * @hoge
    */
   .class {
     /*
-     * @baz baz
+     * @baz baz1, baz2, baz3
      */
      font-size: 12px;
   }
@@ -46,11 +46,11 @@ annotation.parse(css)
   },
   {
     atrule: 'media',
-    hoge: 'hoge',
+    hoge: true,
     params: 'screen (min-width: 600px)'
   },
   {
-    baz: 'baz',
+    baz: ['baz1', 'baz2', 'baz3']
     rule: '.class'
   }
 ]
