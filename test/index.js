@@ -52,3 +52,27 @@ test('test-3', function (t) {
     t.same(actual, expected, "comment in rules")
     t.end()
 })
+
+test('test-4', function (t) {
+    var actual = annotation.parse(input("test-4"))
+    var expected = [
+        {
+            "foo": true,
+            "rule": ".class"
+        }
+    ]
+    t.same(actual, expected, "comment in rules")
+    t.end()
+})
+
+test('test-5', function (t) {
+    var actual = annotation.parse(input("test-5"))
+    var expected = [
+        {
+            "array": ['foo', 'bar', 'baz'],
+            "rule": ".class"
+        }
+    ]
+    t.same(actual, expected, "comment in rules")
+    t.end()
+})
