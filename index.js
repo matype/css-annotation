@@ -10,13 +10,21 @@ module.exports.parse = function (css) {
             var text = node.text
             var tmp = {}
 
-            var names = text.match(/\@.+?\s(.+?)(\n|$)/g)
-            names.forEach(function (name, i) {
-                name.match(/\@(.+?)\s(.+?)(\n|$)/g)
+            var names = text.match(/\@.+?\s.+?(\n|$)/g)
+            if (names) {
+                names.forEach(function (name, i) {
+                    name.match(/\@(.+?)\s(.+?)(\n|$)/g)
+                    var key = RegExp.$1
+                    var val = RegExp.$2
+                    tmp[key] = val
+                })
+            }
+
+            var only = text.match(/\@(\w+)(\n|$)/g)
+            if (only) {
                 var key = RegExp.$1
-                var val = RegExp.$2
-                tmp[key] = val
-            })
+                tmp[key] = true
+            }
 
             var parent = node.parent
 
