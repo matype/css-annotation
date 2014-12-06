@@ -16,6 +16,14 @@ module.exports.parse = function (css) {
                     name.match(/\@(.+?)\s(.+?)(\n|$)/g)
                     var key = RegExp.$1
                     var val = RegExp.$2
+
+                    if (val.match(/\,/)) {
+                        val = val.split(',')
+                        val.forEach(function (v, i) {
+                            val[i] = v.trim()
+                        })
+                    }
+
                     tmp[key] = val
                 })
             }
