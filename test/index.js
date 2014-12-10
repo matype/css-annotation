@@ -76,3 +76,16 @@ test('test-5', function (t) {
     t.same(actual, expected, "comment in rules")
     t.end()
 })
+
+test('test-6', function (t) {
+    var actual = annotation.parse(input("test-6"))
+    var expected = [
+        {
+            "hoge": true,
+            "piyo": ['piyo', 'poyo'],
+            "rule": ".class"
+        }
+    ]
+    t.same(actual, expected, "comment in rules")
+    t.end()
+})
