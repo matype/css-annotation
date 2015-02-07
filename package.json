@@ -18,7 +18,7 @@
   "author": "Masaaki Morishita",
   "license": "MIT",
   "dependencies": {
-    "postcss": "^3.0.6"
+    "postcss": "^4.0.3"
   },
   "devDependencies": {
     "tape": "^3.0.3",
