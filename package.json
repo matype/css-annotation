@@ -1,6 +1,6 @@
 {
   "name": "css-annotation",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Annotation parser for CSS",
   "main": "index.js",
   "scripts": {
