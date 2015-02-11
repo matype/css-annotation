@@ -27,7 +27,7 @@ module.exports.parse = function (css) {
 
                         tmp[key] = val
                     }
-                    if (name.match(/\@(\w+)(\n|$)/g)) {
+                    if (name.match(/\@(\w+)\s*(\n|$)/g)) {
                         var key = RegExp.$1
                         tmp[key] = true
                     }
