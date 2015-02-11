@@ -91,7 +91,7 @@ test('test-6', function (t) {
 })
 
 test('test trailing whitespaces', function (t) {
-    var actual = annotation.parse('/* @foo \n @bar */')
+    var actual = annotation.parse(input("test-7"))
     var expected = [
         {
             "foo" : true,
