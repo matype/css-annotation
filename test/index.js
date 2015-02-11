@@ -89,3 +89,15 @@ test('test-6', function (t) {
     t.same(actual, expected, "comment in rules")
     t.end()
 })
+
+test('test trailing whitespaces', function (t) {
+    var actual = annotation.parse('/* @foo \n @bar */')
+    var expected = [
+        {
+            "foo" : true,
+            "bar": true
+        }
+    ]
+    t.same(actual, expected, "comment in rules")
+    t.end()
+})
