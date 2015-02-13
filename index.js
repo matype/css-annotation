@@ -14,22 +14,39 @@ module.exports.parse = function (css) {
             var names = text.match(/\@.+?(\n|$|\s.+?(\n|$))/g)
             if (names) {
                 names.forEach(function (name, i) {
+                    // Parsing annotation with value
+                    // e.g. @foo bar
                     if (name.match(/\@(.+?)\s(.+?)(\n|$)/g)) {
                         var key = RegExp.$1
                         var val = RegExp.$2
 
+                        // Parsing multiple annotations
+                        // e.g. @array foo, bar, baz
                         if (val.match(/\,/)) {
                             val = val.split(',')
                             val.forEach(function (v, i) {
                                 val[i] = v.trim()
                             })
                         }
-
-                        tmp[key] = val
+                        
+                        // Extend the existing value
+                        if (tmp[key] !== undefined && tmp[key] !== true) {
+                            // Turn value in array
+                            if (!Array.isArray(tmp[key])) {
+                                tmp[key] = [tmp[key]]
+                            }
+                            tmp[key] = tmp[key].concat(val)    
+                        } 
+                        // Set the initial value
+                        else {
+                            tmp[key] = val
+                        }
                     }
+                    // Parsing annotation without value
+                    // e.g. @foo
                     if (name.match(/\@(\w+)\s*(\n|$)/g)) {
                         var key = RegExp.$1
-                        tmp[key] = true
+                        tmp[key] = tmp[key] || true
                     }
                 })
             }
