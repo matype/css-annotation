@@ -1,7 +1,7 @@
 var fs = require('fs')
 var postcss = require('postcss')
 
-module.exports.parse = function (css) {
+module.exports.parse = function parse (css) {
     var root = postcss.parse(css)
     var res = []
 
@@ -28,15 +28,15 @@ module.exports.parse = function (css) {
                                 val[i] = v.trim()
                             })
                         }
-                        
+
                         // Extend the existing value
                         if (tmp[key] !== undefined && tmp[key] !== true) {
                             // Turn value in array
                             if (!Array.isArray(tmp[key])) {
                                 tmp[key] = [tmp[key]]
                             }
-                            tmp[key] = tmp[key].concat(val)    
-                        } 
+                            tmp[key] = tmp[key].concat(val)
+                        }
                         // Set the initial value
                         else {
                             tmp[key] = val
@@ -68,4 +68,44 @@ module.exports.parse = function (css) {
     })
 
     return res
+}
+
+
+
+module.exports.read = function read (commentText) {
+    var tmp = {}
+
+    var names = commentText.match(/\@.+?(\n|$|\s.+?(\n|$))/g)
+    if (names) {
+        names.forEach(function (name, i) {
+            if (name.match(/\@(.+?)\s(.+?)(\n|$)/g)) {
+                var key = RegExp.$1
+                var val = RegExp.$2
+
+                if (val.match(/\,/)) {
+                    val = val.split(',')
+                    val.forEach(function (v, i) {
+                        val[i] = v.trim()
+                    })
+                }
+
+                if (tmp[key] !== undefined && tmp[key] !== true) {
+                    if (!Array.isArray(tmp[key])) {
+                        tmp[key] = [tmp[key]]
+                    }
+                    tmp[key] = tmp[key].concat(val)
+                }
+                else {
+                    tmp[key] = val
+                }
+            }
+
+            if (name.match(/\@(\w+)\s*(\n|$)/g)) {
+                var key = RegExp.$1
+                tmp[key] = tmp[key] || true
+            }
+        })
+    }
+
+    return tmp
 }

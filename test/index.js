@@ -114,3 +114,25 @@ test('test-8', function (t) {
     t.same(actual, expected, "comment in rules")
     t.end()
 })
+
+test('test annotation.read()', function (t) {
+    var commentText = "@start hoge"
+    var actual = annotation.read(commentText)
+    var expected = {
+        "start": "hoge"
+    }
+    t.same(actual, expected)
+    t.end()
+})
+
+test('test annotation.read()', function (t) {
+    var commentText = "@start hoge\n * @foo\n * @hoge hogehoge"
+    var actual = annotation.read(commentText)
+    var expected = {
+        "start": "hoge",
+        "foo": true,
+        "hoge": "hogehoge"
+    }
+    t.same(actual, expected)
+    t.end()
+})

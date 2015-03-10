@@ -21,7 +21,6 @@
     "postcss": "^4.0.3"
   },
   "devDependencies": {
-    "tape": "^3.0.3",
-    "tap": "^0.4.13"
+    "tape": "^3.0.3"
   }
 }
