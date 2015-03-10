@@ -57,6 +57,19 @@ annotation.parse(css)
 */
 ```
 
+## API
+
+### `annotation.parse(css)`
+
+Parse annotation comment in `css` and return array of its results.
+
+### `annotation.read(commentText)`
+
+`commentText` is [PostCSS's `comment.text`](https://github.com/postcss/postcss/blob/master/API.md#commenttext).
+
+Return its parse results.
+
+
 
 ## License
 
