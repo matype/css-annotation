@@ -65,7 +65,7 @@ Parse annotation comment in `css` and return array of its results.
 
 ### `annotation.read(commentText)`
 
-`commentText` is [PostCSS's `comment.text`](https://github.com/postcss/postcss/blob/master/API.md#commenttext).
+`commentText` is [PostCSS's `comment.text`](https://github.com/postcss/postcss/blob/master/docs/api.md#comment-node).
 
 Return its parse results.
 
