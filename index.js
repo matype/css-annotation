@@ -5,7 +5,7 @@ module.exports.parse = function parse (css) {
     var root = postcss.parse(css)
     var res = []
 
-    root.eachComment(function (node, i) {
+    root.walkComments(function (node, i) {
         if (node.type === 'comment') {
             var text = node.text
             var tmp = {}
