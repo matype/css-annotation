@@ -11,7 +11,7 @@ module.exports.parse = function parse (css) {
             var tmp = {}
 
 
-            var names = text.match(/\@.+?(\n|$|\s.+?(\n|$))/g)
+            var names = text.match(/\@.+?(\n|$|\s.+?(\n|$))/gm)
             if (names) {
                 names.forEach(function (name, i) {
                     // Parsing annotation with value
