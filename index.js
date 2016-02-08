@@ -75,7 +75,7 @@ module.exports.parse = function parse (css) {
 module.exports.read = function read (commentText) {
     var tmp = {}
 
-    var names = commentText.match(/\@.+?(\n|$|\s.+?(\n|$))/g)
+    var names = commentText.match(/\@.+?(\n|$|\s.+?(\n|$))/gm)
     if (names) {
         names.forEach(function (name, i) {
             if (name.match(/\@(.+?)\s(.+?)(\n|$)/g)) {
